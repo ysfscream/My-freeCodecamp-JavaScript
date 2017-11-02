@@ -1,3 +1,5 @@
+//  字符串中找最长的单词
+
 function findLongestWord(str) {
   // 请把你的代码写在这里
   strArr = str.split(' ')

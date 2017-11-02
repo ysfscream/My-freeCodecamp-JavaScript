@@ -1,3 +1,5 @@
+//	阶乘
+
 function factorialize (num) {
 	if (num === 1 || num === 0) {
 		return 1
