@@ -9,7 +9,7 @@ function factorialize (num) {
 		// 	num *= i
 		// }
 		// return num 
-		// 传统 for 循环
+		// for 循环
 
 		return num * factorialize(num - 1) // 递归调用
 	}
