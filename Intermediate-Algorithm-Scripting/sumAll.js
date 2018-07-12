@@ -1,4 +1,5 @@
 // 我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。
+
 function sumAll(arr) {
   const allNumArr = []
   arr.sort((prev, next) => {
