@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>danmu</title>
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script type="text/x-template" id="danmu-screen">
+    <div class="danmu-wall">
+      <div v-for="(item, index) in message" class="wall">
+        <p :style="{color: item.color, top: item.top}" v-if="message">{{item.text}}</p>
+      </div>
+   </div>
+</script>
+<div id="app">
+  <h3>{{ dammuTitle }}</h3>
+    <danmu-screen
+     :message="danmuWord" ref="emptyWord">
+    </danmu-screen>
+  <br>
+    <div><input type="text" class="danmu-input" v-model="word.text" @keyup.enter="sendWord" placeholder="弹~弹~弹~点什么吧"></div>
+    <button class="btn btn-lg btn-info btn-send" @click="sendWord">发射 Biu</button>
+    <button class="btn btn-lg btn-danger btn-empty" @click="emptyWord">清空 Dang</button>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

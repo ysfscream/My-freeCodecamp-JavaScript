@@ -1,0 +1,41 @@
+new Vue({
+	el: '#app',
+	data() {
+		return {
+			quotes: {
+				quote: '',
+				author: '',
+				cat: ''
+			},
+			author: '',
+			loading: false
+		}
+	},
+	methods: {
+		randomNum() {
+			return Math.round(Math.random()*100)
+		},
+		loadQuotas() {
+			this.loading = true
+			let num = this.randomNum()
+			fetch('https://talaikis.com/api/quotes/')
+				.then((res) => {
+					if(res.status === 200) {
+						res.json().then((data) => {
+							Object.assign(this.quotes, data[num])
+							this.loading = false
+						})
+					}
+			}).catch((err) => {
+				console.log(err)
+			})
+		},
+		openURL() {
+			const url = 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + this.quotes.quote + '" ' + this.quotes.author)
+			window.open(url, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0')
+		}
+	},
+	created() {
+		this.loadQuotas()
+	}
+})

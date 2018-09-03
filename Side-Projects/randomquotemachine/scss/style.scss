@@ -1,0 +1,68 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #7c9eb2;
+	font-family: "Courgette", cursive;
+	background: linear-gradient(to right, #f1e3f3, #c2bbf0);
+}
+
+#app {
+	.quote-content {
+		position: relative;
+		margin-left: 20%;
+		top: 50px;
+		height: 600px;
+		width: 50%;
+		border-radius: 20px;
+		background: white;
+		box-shadow: 0px 0px 20px #f3f5f5;
+		.control {
+			padding-top: 30px;
+			margin-left: 50px;
+		}
+		.quote {
+			position: relative;
+			margin: auto;
+			top: 40px;
+			width: 90%;
+			text-indent: 2rem;
+			line-height: 55px;
+		}
+		.quote-animate {
+			animation: isVisQuote 3s ease forwards;
+			opacity:0.1;
+		}
+		.author {
+			position: absolute;
+			top: 430px;
+			left: 65%;
+		}
+	}
+	.triangle {
+		width: 0;
+		height: 0;
+		border-left: 110px solid transparent;
+		border-top: 80px solid white;
+		position: relative;
+		left: 40%;
+		top: 50px;
+	}
+	.button {
+		position: absolute;
+		top: 510px;
+		left: 65%;
+	}
+	.twttier {
+		position: absolute;
+		top: 510px;
+		left: 10%;
+	}
+}
+
+@keyframes isVisQuote {
+		form {opacity: 0.1;}
+		to {opacity: 1;}
+	}

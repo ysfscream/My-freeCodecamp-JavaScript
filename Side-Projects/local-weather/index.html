@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Local Weather</title>
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons.min.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<div id="app" class="content">
+	<div class="loading-wait" v-if="loading">
+		<div class="loading">.</div>
+	</div>
+	<div class="columns is-mobile weather-warp">
+		<div class="column is-10 is-offset-1 weather-word">
+			<div class="columns">
+			  <div class="column weather-city">
+				 <h1><i class="wi" :class="weather[weatherDes]"></i></h1>
+				  <h2>{{ weatherCity }}</h2>
+			  </div>
+			  <div class="column weather-temp">
+				 <h1 v-if="isCelsius">{{ weatherMain.temp }} <i class="wi wi-celsius"></i></h1>
+				<h1 v-else>{{ weatherMain.temp }} <i class="wi wi-fahrenheit"></i></h1>
+				  <div class="transe-temp">
+				  <label class="switch">
+					  <input type="checkbox" @change="changeTemp" value="123">
+					  <span class="slider round"></span>
+					</label>
+				  </div>
+			  </div>
+			</div>
+		</div>
+		<a href="Javascript:;" class="data-visible" @click="visible = !visible"><i v-if="visible" class="fas fa-angle-double-up"></i>
+			<i v-else class="fas fa-angle-double-down"></i></a>
+	</div>
+	<div class="columns export is-mobile weather-extra" v-if="visible">
+		<div class="column is-10 is-offset-1">
+			<div class="columns">
+			  <div class="column test">
+				 <div class="extra-word">
+					 <h4>Pressure</h4>
+					<i class="wi wi-barometer"></i>
+				 	<span>{{ weatherMain.pressure }}</span>
+				 </div>
+			  </div>
+			   <div class="column test">
+				 <div class="extra-word">
+					<h4>Humidity</h4>
+					<i class="wi wi-humidity"></i>
+				 	<span>{{ weatherMain.humidity }}%</span>
+				 </div>
+			  </div>
+			   <div class="column test">
+				 <div class="extra-word">
+					 <h4>Wind Speed</h4>
+					 <i class="wi" :class="'wi-wind-beaufort-'+weatherWind.speed.toFixed(0)"></i>
+					<span>{{ weatherWind.speed }}km/h</span>
+				 </div>
+			   </div>
+			</div>
+		</div>
+	</div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

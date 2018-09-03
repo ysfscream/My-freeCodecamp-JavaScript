@@ -1,0 +1,60 @@
+Vue.component('danmuScreen', {
+  template: '#danmu-screen',
+  props: {
+    message: Array,
+  }
+})
+
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      dammuTitle: '欢迎来到吐槽墙',
+      danmuWord: [],
+      word: {
+        text: '',
+        color: '#ccc',
+        top: '0px'
+      }
+    }
+  },
+  methods: {
+    randNum() {
+      return Math.round(Math.random()*5)
+    },
+    randColor() {
+      const color = ['#5BC0EB', '#FDE74C', '#9BC53D', '#E55934', '#747E8F', '#F0374D']
+      let i = this.randNum()
+      return color[i]
+    },
+    randPos() {
+      const pos = ['20px', '50px', '100px', '150px', '200px', '250px']
+      let p = this.randNum()
+      return pos[p]
+    },
+    sendWord() {
+      let {text, color, top} = this.word
+      if(!this.word.text) {
+        alert('Please enter some words')
+      }
+      color = this.randColor()
+      top = this.randPos()
+      this.danmuWord.push({
+        text: text,
+        color: color,
+        top: top
+      })
+      this.word.text = ''
+    },
+    emptyWord() {
+      let childData = this.$refs.emptyWord.message
+      //拿到子组件的数据
+      if (!childData.length) {
+        alert('There is no data')
+      }
+      childData = []
+      //修改子组件的数据
+      this.danmuWord = []
+    }
+  }
+})

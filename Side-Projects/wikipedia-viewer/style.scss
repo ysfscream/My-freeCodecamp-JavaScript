@@ -1,0 +1,65 @@
+html {
+	body {
+		font-family: 'Roboto', sans-serif;
+		background: #2BC0E4;  /* fallback for old browsers */
+	  background: -webkit-linear-gradient(left, #EAECC6, #2BC0E4);
+	  background: -o-linear-gradient(left, #EAECC6, #2BC0E4);
+	  background: linear-gradient(to right, #EAECC6, #2BC0E4);  /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	}
+}
+
+#app {
+	.search-page {
+		display: block;
+		width: 100%;
+		padding: 60px 40px;
+		position: absolute;
+		top: 20%;
+		text-align: center;
+		.input {
+	    box-shadow: 1px 3px 10px 0px #ccc;
+	    margin: 40px 0;
+	    width: 60%;
+		}
+		#search-button {
+			position: relative;
+			top: 40px;
+			right: 40px;
+			height: 54px;
+			width: 60px;
+			border-radius: 0 50px 50px 0;
+		}
+		#search-button__mobile {
+			display: none;
+		}
+	}
+	.search-result {
+		display: none;
+		grid-template-columns: repeat(3, 1fr);
+		padding: 60px 40px;
+	}
+}
+
+@media (max-width: 996px) {
+	#app {
+		.search-page {
+			.input {
+		    box-shadow: 1px 3px 10px 0px #ccc;
+		    margin: 40px 0;
+		    width: 100%;
+			}
+			#search-button {
+				display: none;
+			}
+			#search-button__mobile {
+				display: inline-block;
+			}
+		}
+		.search-result {
+			grid-template-columns: 1fr;
+			.box {
+				height: 100%;
+			}
+		}
+	}
+}

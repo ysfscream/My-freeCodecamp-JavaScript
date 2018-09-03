@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>RandomQuoteMachine</title>
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+<div id="app">
+	<div class="quote-content">
+		<div class="control">
+    	<div class="tags has-addons">
+      	<span class="tag is-dark"><i class="fa fa-tag" aria-hidden="true"></i></span>
+     	 <span class="tag is-info">{{ quotes.cat }}</span>
+    	</div>
+  	</div>
+		<p class="subtitle is-3 quote" :class="{'quote-animate': !loading}">" {{ quotes.quote }} "</p>
+		<span class="subtitle is-4 author" :class="{'quote-animate': !loading}">-- {{ quotes.author }}</span>
+		<a class="button is-info is-medium twttier" @click="openURL">
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+		</a>
+		<a v-if="!loading" class="button is-primary" @click="loadQuotas">
+			New Quote
+		</a>
+		<a v-else class="button is-primary is-loading">
+			New Quote
+		</a>
+	</div>
+	<div class="triangle">
+	</div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

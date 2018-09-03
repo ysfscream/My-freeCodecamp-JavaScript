@@ -1,0 +1,93 @@
+const apiURL = 'https://fcc-weather-api.glitch.me/api/current'
+// ?lat=25&lon=102 需要传入
+
+// Promise 封装 ajax 的一个方法 Promise encapsulates a method of ajax
+const ajaxFetch = {
+	get(url) {
+		return new Promise((resolve, reject) => {
+			let xhr = new XMLHttpRequest()
+			xhr.open('GET', url, true)
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						resolve({
+							status: 200,
+							data: xhr.responseText
+						}, xhr)
+					} else {
+						reject({
+							code: xhr.status,
+							message: xhr.response
+						}, xhr)
+					}
+				}
+			}
+			xhr.send()
+		})
+	}
+}
+
+new Vue({
+	el: '#app',
+	data() {
+		return {
+			loading: true,
+			visible: false,
+			isCelsius: true,
+			lat: '',
+			long: '',
+			weatherDes: '',
+			weatherCity: '',
+			weatherMain: {},
+			weatherWind: '',
+			weather: {
+				Clouds: 'wi-cloud',
+				Sunny: 'wi-day-sunny',
+				Rain: 'wi-rain',
+				Clear: 'wi-day-sunny'
+			}
+		}
+	},
+	methods: {
+		changeTemp() {
+			this.isCelsius = !this.isCelsius
+			if (!this.isCelsius) {
+				this.weatherMain.temp = (this.weatherMain.temp * 1.8 + 32).toFixed(2)
+			} else {
+				this.weatherMain.temp = ((this.weatherMain.temp - 32) / 1.8).toFixed(2)
+			}
+		},
+		loadWeather(long, lat) {
+			ajaxFetch.get(`${apiURL}?lat=${lat}&lon=${long}`).then((res) => {
+				const weatherData = JSON.parse(res.data)
+				this.weatherDes = weatherData.weather[0].main
+				this.weatherCity = weatherData.name
+				this.weatherMain = weatherData.main
+				this.weatherWind = weatherData.wind
+				this.loading = false
+			}).catch((err) => {
+				alert(err.message)
+			})
+		},
+		getPosition() {
+			if (navigator.geolocation) {
+				const success = (position) => {
+					const { longitude, latitude } = position.coords
+					const long = parseInt(longitude.toFixed(3))
+					const lat = parseInt(latitude.toFixed(3))
+					this.loadWeather(long, lat)
+				}
+				const error = (err) => {
+					const error = err.message;
+					alert(error)
+				}
+				navigator.geolocation.getCurrentPosition(success, error)
+			} else {
+				alert('unposition')
+			}
+		}
+	},
+	created() {
+		this.getPosition()
+	}
+})
