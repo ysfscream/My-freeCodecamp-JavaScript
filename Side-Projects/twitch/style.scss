@@ -1,0 +1,117 @@
+$twitch-color: #6441A4;
+$twitch-color-deep: #4b367c;
+$tab-font-color: #828181;
+$grey-dark: hsl(0, 0%, 29%);
+$offline: #FF331F;
+$online: #17A268;
+
+html {
+  margin: 0;
+  background-color: $twitch-color;
+  box-sizing: border-box;
+}
+
+#app {
+  padding: 80px;
+  .card {
+    .card-header {
+      padding: .75rem .9rem;
+      .log-img {
+        width: 180px;
+      }
+      .fa-twitch {
+        font-size: 3rem;
+      }
+    }
+    .card-content {
+      height: 450px;
+      overflow: scroll;
+      .content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 1.2rem;
+        grid-row-gap: 1.2rem;
+        .disabled {
+          display: none;
+        }
+        .item {
+          height: 200px;
+          padding: .75rem;
+          border: 1px solid $twitch-color-deep;
+          overflow: hidden;
+          .image {
+            display: inline-block;
+            width: 64px;
+          }
+          .link {
+            display: block;
+            text-decoration: underline;
+            font-size: 1.5rem;
+            color: $grey-dark;
+            margin: .75rem 0;
+            &:hover {
+              color: $twitch-color-deep;
+            }
+          }
+          .description {
+            width: 100%;
+            white-space: nowrap;
+            text-overflow:ellipsis; // ...省略号显示
+            overflow:hidden; // 超出部分隐藏
+          }
+          .des-animate {
+            animation: 8s wordsLoop linear infinite normal;
+            overflow: visible;
+            text-overflow: initial;
+          }
+          .flag {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: block;
+            float: right;
+          }
+          .offline {
+            background: $offline;
+          }
+          .online {
+            background: $online;
+          }
+        }
+      }
+    }
+    .card-footer {
+      .card-footer-item {
+        color: $tab-font-color;
+        font-weight: 600;
+      }
+      .is-active {
+        color: $twitch-color-deep;
+        border-top: 2px solid;
+      }
+    }
+  }
+}
+
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(200px);
+    -webkit-transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes wordsLoop {
+  0% {
+    transform: translateX(200px);
+    -webkit-transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+
