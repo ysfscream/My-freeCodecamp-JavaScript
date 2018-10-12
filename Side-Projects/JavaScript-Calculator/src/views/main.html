@@ -1,0 +1,18 @@
+<div class="phone-view">
+  <div class="phone-top">
+    <span class="camera"></span>
+    <span class="speaker"></span>
+  </div>
+  <div class="phone-screen">
+    <div class="calculator">
+      <div class="calculator-display">
+        <span :class="isLarge ? 'calculator-displaynum__large': 'calculator-displaynum__small'">
+          {{ cal.displayNum }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="phone-bottom">
+    <span class="home"></span>
+  </div>
+</div>
