@@ -7,8 +7,22 @@
     <div class="calculator">
       <div class="calculator-display">
         <span :class="isLarge ? 'calculator-displaynum__large': 'calculator-displaynum__small'">
-          {{ cal.displayNum }}
+          {{ calculator.displayNum }}
         </span>
+      </div>
+      <div class="calculator-keyboard">
+          <button
+            :class="[
+              !btn ? 'is-large__btn' : '',
+              (typeof btn) === 'number' || btn === '.' ? 'is-number__btn': '',
+              ['AC', '+/-', '%'].includes(btn) ? 'is-special__btn' : '',
+              ['+', '-', 'x', '÷', '='].includes(btn) ? 'is-normal__btn' : '',
+            ]"
+            v-for="(btn, index) in btnList"
+            :key="index"
+            @click="inputBtnValue(btn)">
+            {{ btn }}
+          </button>
       </div>
     </div>
   </div>

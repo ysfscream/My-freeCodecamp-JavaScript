@@ -5,13 +5,19 @@ html body {
   padding: 0px;
   font-size: 16px;
 }
+button {
+  border-radius: 100%;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
 #app {
   width: 100%;
   height: 100%;
   .phone-view {
     box-sizing: border-box; 
-    width: 320px;
-    height: 580px;
+    width: 318px;
+    height: 603px;
     margin: 40px auto;
     padding: 75px 11px;
     border: 1px solid;
@@ -43,22 +49,55 @@ html body {
       height: 100%;
       background: $phone-backgroud;
       color: #fff;
+      box-sizing: border-box;
+      padding: 0 8px;
       .calculator {
         height: 100%;
         .calculator-display {
           text-align: right;
           height: 80px;
+          margin-bottom: 20px;
           span {
             position: relative;
             padding-bottom: 0px;
           }
           .calculator-displaynum__large {
-            font-size: 3rem;
+            font-size: 3.1rem;
             top: 13px;
           }
           .calculator-displaynum__small {
             font-size: 2.5rem;
             top: 24px;
+          }
+        }
+        .calculator-keyboard {
+          height: 350px;
+          overflow: hidden;
+          text-align: center;
+          display: grid;
+          grid-template-rows: repeat(5, 1fr);
+          grid-template-columns: repeat(4, 1fr);
+          grid-column-gap: 15px;
+          grid-row-gap: 15px;
+          .is-large__btn {
+            border-radius: 50px;
+            width: 128px;
+            grid-column-start: 1; 
+            grid-column-end: 3;
+          }
+          .is-number__btn {
+            color: #fff;
+            background: $number-btn;
+            border-color: $number-btn;
+          }
+          .is-special__btn {
+            background: $special-btn;
+            border-color: $special-btn;
+          }
+          .is-normal__btn {
+            color: #fff;
+            background: $normal-btn;
+            border-color: $normal-btn;
           }
         }
       }
