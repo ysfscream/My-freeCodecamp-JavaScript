@@ -20,23 +20,23 @@ module.exports = {
     new webpack.NamedModulesPlugin(), // 添加了 NamedModulesPlugin，以便更容易查看要修补(patch)的依赖
     new webpack.HotModuleReplacementPlugin() // 热更新 HMR
   ],
-module: {
-  rules: [
-    {
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-    },
-    {
-      test: /\.(png|svg|jpg|gif)$/,
-      use: ['file-loader']
-    },
-    {
-      test: /\.html$/,
-      use: ['html-loader']
-    }
-  ]
-},
-devtool: 'eval-source-map', //使用 source map 将编译后的代码映射回原始源代码，出现错误可以精准指向源码，而不是打包后的 bundle 文件
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader']
+      }
+    ]
+  },
+  devtool: 'eval-source-map', //使用 source map 将编译后的代码映射回原始源代码，出现错误可以精准指向源码，而不是打包后的 bundle 文件
   devServer: {
     hot: true, // 启用 HMR 就是更新 webpack-dev-server 的配置
     port: 8081, // 默认 8080 可自定义

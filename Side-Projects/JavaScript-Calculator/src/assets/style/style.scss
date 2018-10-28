@@ -10,6 +10,10 @@ button {
   outline: none;
   cursor: pointer;
   font-size: 1.5rem;
+  transition: background-color .5s;
+}
+button:active {
+  background-color: $actibe-btn !important;
 }
 #app {
   width: 100%;
