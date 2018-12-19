@@ -1,5 +1,19 @@
 #app
-  svg#fillgauge(width=200, height=200)
-  //- .clock
-  //-   .clock-border
-  //-   .clock-progress
+  section.title
+    h3 Pomodoro Titmer
+    p(class='timeout') 00 : 00
+  .timer
+    svg#fillgauge(width=300, height=300)
+  .oper
+    .break-ctrl
+      p Break
+      button(class='oper-btn minus-btn') -
+      input(class='oper-input break-time' type='number' min='1' value="5")
+      button(class='oper-btn plus-btn') +
+    .start-ctrl
+      button(class='start-btn') Start!!
+    .session-ctrl
+      p Session
+      button(class='oper-btn minus-btn') -
+      input(class='oper-input session-time' type='number' min='1' value="25")
+      button(class='oper-btn plus-btn') +

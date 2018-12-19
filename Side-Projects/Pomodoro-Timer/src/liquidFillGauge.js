@@ -53,7 +53,7 @@ export default {
     }
 
     var textPixels = (config.textSize * radius / 2)
-    var textFinalValue = parseFloat(value).toFixed(2)
+    var textFinalValue = parseFloat(value).toFixed(0)
     var textStartValue = config.valueCountUp ? config.minValue : textFinalValue
     var percentText = config.displayPercent ? '%' : ''
     var circleThickness = config.circleThickness * radius
