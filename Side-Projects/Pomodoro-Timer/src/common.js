@@ -14,7 +14,7 @@ const setTime = (oldValue, newValue, oper) => {
   }
 }
 
-const sessionCount = (timer) => {
+const timeCount = (timer) => {
   let minutes = parseInt(timer / 60, 10)
   let seconds = parseInt(timer % 60, 10)
   minutes = minutes < 10 ? `0${minutes}` : minutes
@@ -25,7 +25,4 @@ const sessionCount = (timer) => {
   }
 }
 
-const breakCount = () => {
-}
-
-export { render, setTime, sessionCount, breakCount }
+export { render, setTime, timeCount }

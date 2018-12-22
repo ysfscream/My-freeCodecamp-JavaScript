@@ -1,7 +1,7 @@
 import './style.styl'
 import html from './index.pug'
 import d3Gauge from './liquidFillGauge.js'
-import { render, setTime, sessionCount } from './common'
+import { render, setTime, timeCount } from './common'
 
 render(html)
 
@@ -11,7 +11,7 @@ gaugeConfig.textColor = '#FF4444'
 gaugeConfig.waveTextColor = '#FFAAAA'
 gaugeConfig.waveColor = '#FFDDDD'
 gaugeConfig.circleThickness = 0.1
-gaugeConfig.textVertPosition = 0.4
+gaugeConfig.textVertPosition = 0.5
 gaugeConfig.waveAnimateTime = 800
 gaugeConfig.valueCountUp = false
 const gauge = d3Gauge.loadLiquidFillGauge('fillgauge', 100, gaugeConfig)
@@ -36,21 +36,33 @@ minusBtns[1].addEventListener('click', () => {
   sessionTime.value = setTime(parseInt(sessionTime.value, 10), 1, '-')
 })
 
-startBtn.addEventListener('click', () => {
+const startTimeCout = (time, oper) => {
+  startBtn.textContent = oper
   startBtn.disabled = true
-  let timer = sessionTime.value * 60
+  let timer = time.value * 60
   const interVal = setInterval(() => {
-    const res = sessionCount(timer)
+    const res = timeCount(timer)
     timeout.textContent = res.content
     timer = res.timer
-    const updateNum = Math.round((timer / (sessionTime.value * 60)) * 100)
+    const updateNum = Math.round((timer / (time.value * 60)) * 100)
     gauge.update(updateNum)
     timer -= 1
     if (timer < 0) {
-      timer = sessionTime.value * 60
+      timer = time.value * 60
+      gauge.update(100)
       clearInterval(interVal)
+      if (oper === 'Session') {
+        startTimeCout(breakTime, 'Break')
+      } else {
+        startBtn.textContent = 'Start!!'
+        startBtn.disabled = false
+      }
     }
   }, 1000)
+}
+
+startBtn.addEventListener('click', () => {
+  startTimeCout(sessionTime, 'Session')
 })
 
 if (module.hot) { // 热更新该模块
