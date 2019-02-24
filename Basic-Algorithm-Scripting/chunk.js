@@ -12,3 +12,4 @@ function chunk(arr, size) {
 }
 
 console.log(chunk(["a", "b", "c", "d"], 2));
+
