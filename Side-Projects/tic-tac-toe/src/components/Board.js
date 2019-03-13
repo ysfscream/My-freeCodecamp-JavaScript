@@ -1,32 +1,34 @@
-import Square from './Square';
-import React, { Component } from 'react';
+import React from 'react'
+import Square from './Square'
 
-class Board extends Component {
-  renderSquare(index) {
-    return <Square key={index} value={index} />
+const Board = (props) => {
+  const renderSquare = (index) => {
+    return (
+      <Square
+        key={index}
+        value={props.squares[index]}
+        active={index}
+        winnerLines={props.winnerLines}
+        onClick={() => props.onClick(index)}
+      />
+    )
   }
-
-  renderGrid(n) {
+  const renderGrid = (n) => {
     const layouts = []
-    for (let i = 1; i <= n; i+=1) {
-      layouts.push(this.renderSquare(i))
+    for (let i = 0; i < n; i += 1) {
+      layouts.push(renderSquare(i))
     }
     return (
-      <div className="board-wrap">
+      <div className='board-wrap'>
         {layouts}
       </div>
     )
   }
+  return (
+    <div className='board'>
+      {renderGrid(9)}
+    </div>
+  )
+}
 
-  render() {
-    const status = 'Next player: X'
-    return (
-      <div className="board">
-        <div className="status">{status}</div>
-        {this.renderGrid(9)}
-      </div>
-    )
-  };
-};
-
-export default Board;
+export default Board

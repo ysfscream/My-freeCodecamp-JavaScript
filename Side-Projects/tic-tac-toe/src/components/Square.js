@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Square extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
+const Square = (props) => {
+  const handleClick = () => {
+    return props.onClick()
   }
-  handleClick(value) {
-    console.log(value)
-    this.setState({
-      value,
-    });
+  let isActive = false
+  if (props.winnerLines) {
+    isActive = props.winnerLines.includes(props.active)
   }
-  render() {
-    return (
-      <button
-        className="square"
-        onClick={this.handleClick.bind(this, this.props.value)}>
-        {this.state.value}
-      </button>
-    )
-  };
-};
+  return (
+    <button
+      className={`square ${isActive ? 'is-active': ''}`}
+      onClick={handleClick}>
+      {props.value}
+    </button>
+  )
+}
 
 export default Square;
